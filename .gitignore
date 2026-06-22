@@ -22,4 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-videos/
+videos/*.mov
+videos/WRC Sabha Reel - V1.mp4
