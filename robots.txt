@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://worldrhythmculture.org/sitemap.xml
+Sitemap: https://worldrhythmculture.com/sitemap.xml

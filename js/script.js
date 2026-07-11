@@ -177,5 +177,120 @@ document.addEventListener('DOMContentLoaded', () => {
         
         lazyMediaElements.forEach(el => mediaObserver.observe(el));
     }
+
+    // Team Section Carousel
+    const track = document.querySelector('.team-carousel-track');
+    const prevBtn = document.querySelector('.carousel-control-btn.prev');
+    const nextBtn = document.querySelector('.carousel-control-btn.next');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    
+    if (track) {
+        const cards = Array.from(track.children);
+        let currentIndex = 0;
+        
+        // Helper to determine items per page based on viewport
+        const getItemsPerPage = () => {
+            const width = window.innerWidth;
+            if (width > 991) return 3;
+            if (width > 600) return 2;
+            return 1;
+        };
+        
+        let itemsPerPage = getItemsPerPage();
+        let maxIndex = Math.max(0, cards.length - itemsPerPage);
+        
+        // Populate dots
+        const updateDots = () => {
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            
+            // Total dots is number of slides/cards minus items per page + 1
+            const totalDots = cards.length - itemsPerPage + 1;
+            if (totalDots <= 1) return; // No dots if all items fit on screen
+            
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('carousel-dot');
+                if (i === currentIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    slide();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        };
+        
+        const slide = () => {
+            itemsPerPage = getItemsPerPage();
+            maxIndex = Math.max(0, cards.length - itemsPerPage);
+            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            
+            if (cards.length > 0) {
+                const cardWidth = cards[0].getBoundingClientRect().width;
+                const gap = 30; // matching CSS gap
+                const offset = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${offset}px)`;
+            }
+            
+            // Enable/disable buttons
+            if (prevBtn) prevBtn.disabled = currentIndex === 0;
+            if (nextBtn) nextBtn.disabled = currentIndex >= maxIndex;
+            
+            // Update dots active class
+            if (dotsContainer) {
+                const dots = Array.from(dotsContainer.children);
+                dots.forEach((dot, idx) => {
+                    if (idx === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        };
+        
+        // Initialize
+        updateDots();
+        slide();
+        
+        // Event listeners
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    slide();
+                }
+            });
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                itemsPerPage = getItemsPerPage();
+                maxIndex = Math.max(0, cards.length - itemsPerPage);
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    slide();
+                }
+            });
+        }
+        
+        // Handle window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const newItemsPerPage = getItemsPerPage();
+                if (newItemsPerPage !== itemsPerPage) {
+                    itemsPerPage = newItemsPerPage;
+                    maxIndex = Math.max(0, cards.length - itemsPerPage);
+                    if (currentIndex > maxIndex) currentIndex = maxIndex;
+                    updateDots();
+                    slide();
+                } else {
+                    slide();
+                }
+            }, 100);
+        });
+    }
 });
 

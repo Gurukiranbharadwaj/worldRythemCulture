@@ -12,23 +12,23 @@
         content="Get in touch with World Rhythm Culture in Bengaluru. Have questions about our sessions or want to bring a drum circle to your event? Drop us a line.">
     <meta name="keywords" content="contact rhythm culture, drum circle event booking, rhythm community contact">
 
-    <link rel="canonical" href="https://worldrhythmculture.org/contact.html">
+    <link rel="canonical" href="https://worldrhythmculture.com/contact.html">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://worldrhythmculture.org/contact.html">
+    <meta property="og:url" content="https://worldrhythmculture.com/contact.html">
     <meta property="og:title" content="Contact - World Rhythm Culture">
     <meta property="og:description"
         content="Get in touch with World Rhythm Culture in Bengaluru. Have questions about our sessions or want to bring a drum circle to your event? Drop us a line.">
-    <meta property="og:image" content="https://worldrhythmculture.org/images/logo_circle.webp">
+    <meta property="og:image" content="https://worldrhythmculture.com/images/logo_circle.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://worldrhythmculture.org/contact.html">
+    <meta property="twitter:url" content="https://worldrhythmculture.com/contact.html">
     <meta property="twitter:title" content="Contact - World Rhythm Culture">
     <meta property="twitter:description"
         content="Get in touch with World Rhythm Culture in Bengaluru. Have questions about our sessions or want to bring a drum circle to your event? Drop us a line.">
-    <meta property="twitter:image" content="https://worldrhythmculture.org/images/logo_circle.webp">
+    <meta property="twitter:image" content="https://worldrhythmculture.com/images/logo_circle.webp">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo_circle.webp">
@@ -85,6 +85,27 @@
         .social-circle:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-5px);
+        }
+
+        /* Success Modal Styles */
+        .modal-backdrop.show {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+
+        .modal-backdrop.show .success-modal-content {
+            transform: scale(1) !important;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -244,20 +265,20 @@
                         <div class="glass-panel contact-form-panel">
                             <h3 style="font-size: 2rem; margin-bottom: 24px;">Enquiry Form</h3>
 
-                            <form id="contactForm" style="display: flex; flex-direction: column; gap: 20px;">
+                            <form id="contactForm" action="https://formspree.io/f/mykqrrrw" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
                                     <label for="name" style="color: var(--color-gray);">Name</label>
-                                    <input type="text" id="name" required class="form-input input-orange">
+                                    <input type="text" id="name" name="name" required class="form-input input-orange">
                                 </div>
 
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
                                     <label for="email" style="color: var(--color-gray);">Email</label>
-                                    <input type="email" id="email" required class="form-input input-purple">
+                                    <input type="email" id="email" name="email" required class="form-input input-purple">
                                 </div>
 
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
                                     <label for="subject" style="color: var(--color-gray);">Subject</label>
-                                    <select id="subject" class="form-input" style="cursor: pointer; appearance: none;">
+                                    <select id="subject" name="subject" class="form-input" style="cursor: pointer; appearance: none;">
                                         <option value="join" style="background: var(--color-dark-gray);">Join a Drum
                                             Circle</option>
                                         <option value="corporate" style="background: var(--color-dark-gray);">Corporate
@@ -271,7 +292,7 @@
 
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
                                     <label for="message" style="color: var(--color-gray);">Message</label>
-                                    <textarea id="message" rows="5" required class="form-input input-yellow"
+                                    <textarea id="message" name="message" rows="5" required class="form-input input-yellow"
                                         style="resize: vertical;"></textarea>
                                 </div>
 
@@ -294,7 +315,7 @@
                 <div class="glass-panel"
                     style="padding: 12px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);">
                     <iframe
-                        src="https://maps.google.com/maps?q=Papaiah%20Garden%20Banagirinagara%20Banashankari%203rd%20Stage%20Bengaluru%20Karnataka%20560085&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                        src="https://maps.google.com/maps?q=Papaiah%20Garden%20Banagirinagara%20Banashankari%203rd%20Stage%20Banashankari%20Bengaluru%20Karnataka%20560085&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                         width="100%" height="450"
                         style="border: 0; border-radius: 12px; display: block; filter: grayscale(1) invert(0.9) contrast(1.2);"
                         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
@@ -392,6 +413,22 @@
         </div>
     </footer>
 
+    <!-- Premium Success Modal -->
+    <div id="successModal" class="modal-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.85); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s ease;">
+        <div class="glass-panel success-modal-content" style="padding: 40px; text-align: center; max-width: 450px; width: 90%; transform: scale(0.8); transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);">
+            <div style="background: linear-gradient(135deg, var(--color-orange), var(--color-purple)); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 0 25px rgba(255, 87, 34, 0.4); animation: scaleIn 0.5s ease;">
+                <i data-lucide="check" color="var(--color-white)" width="40" height="40"></i>
+            </div>
+            <h3 style="font-size: 2.2rem; margin-bottom: 12px; font-family: var(--font-heading);" class="gradient-text">Thank You!</h3>
+            <p style="color: var(--color-gray); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6;">
+                Your rhythmic connection has been made. We have received your inquiry and will get back to you shortly.
+            </p>
+            <button id="closeModalBtn" class="btn-primary" style="padding: 12px 32px; font-size: 1rem;">
+                Keep the Beat Going
+            </button>
+        </div>
+    </div>
+
     <!-- Floating Action Buttons -->
     <div class="floating-container">
         <a href="https://www.instagram.com/worldrhythmculture/" target="_blank" rel="noopener noreferrer"
@@ -418,12 +455,12 @@
     {
       "@context": "https://schema.org",
       "@type": "ContactPage",
-      "@id": "https://worldrhythmculture.org/contact.html#webpage",
-      "url": "https://worldrhythmculture.org/contact.html",
+      "@id": "https://worldrhythmculture.com/contact.html#webpage",
+      "url": "https://worldrhythmculture.com/contact.html",
       "name": "Contact World Rhythm Culture",
       "description": "Get in touch with World Rhythm Culture in Bengaluru. Have questions about our sessions or want to bring a drum circle to your event?",
       "publisher": {
-        "@id": "https://worldrhythmculture.org/#localbusiness"
+        "@id": "https://worldrhythmculture.com/#localbusiness"
       }
     }
     </script>
@@ -433,6 +470,38 @@
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
             const submitIcon = document.getElementById('submitIcon');
+            
+            const modal = document.getElementById('successModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            function showSuccessModal() {
+                modal.style.display = 'flex';
+                // Trigger reflow to ensure the transition is animated
+                modal.offsetHeight;
+                modal.classList.add('show');
+                // Re-initialize Lucide Icons for the checkmark icon inside modal
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+
+            function hideSuccessModal() {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 400); // match transition duration
+            }
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', hideSuccessModal);
+            }
+
+            // Close modal when clicking outside the content area
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    hideSuccessModal();
+                }
+            });
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -443,19 +512,35 @@
                 submitText.textContent = 'Sending...';
                 submitIcon.style.display = 'none';
 
-                setTimeout(() => {
-                    // Set 'sent' state
-                    submitText.textContent = 'Message Sent!';
+                const formData = new FormData(form);
 
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showSuccessModal();
+                        form.reset();
+                    } else {
+                        submitText.textContent = 'Oops! Try again';
+                    }
+                })
+                .catch(error => {
+                    submitText.textContent = 'Error sending message';
+                })
+                .finally(() => {
                     setTimeout(() => {
                         // Reset to 'idle' state
                         submitBtn.disabled = false;
                         submitBtn.style.opacity = '1';
                         submitText.textContent = 'Submit Enquiry';
                         submitIcon.style.display = 'inline-block';
-                        form.reset();
-                    }, 3000);
-                }, 1500);
+                    }, 2000);
+                });
             });
         });
     </script>
